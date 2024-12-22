@@ -1,5 +1,67 @@
-node_modules
-dist
-out
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+node_modules/
+
+# Build and output directories
+build/
+dist/
+out/
+
+# Static asset artifacts
+*.lock
+*.tmp
+*.cache
+
+# IDE or editor settings
+.vscode/
+.idea/
+*.swp
+
+# Operating system files
 .DS_Store
-*.log*
+Thumbs.db
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Electron specific
+electron-builder-cache/
+app-update.yml
+*.snap
+*.asar
+*.crash
+*.pid
+*.seed
+
+# Prettier and ESLint
+.prettierignore
+.eslintcache
+
+# Miscellaneous
+*.bak
+*.orig
+*.rej
+
+# Optional npm cache
+.npm/
+
+# Optional coverage files
+coverage/
+
+# Sentry source maps
+sentry.*
+
+# Generated files from Vite
+.vite/
+
+# Test output
+test-output/
+*.test-report.json
