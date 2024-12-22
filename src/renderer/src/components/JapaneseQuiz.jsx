@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { Button } from '@mui/material';
+import { useState, useEffect } from 'react'
+import Stack from '@mui/material/Stack';
 
 function JapaneseQuiz() {
   const hiragana = [
@@ -18,20 +20,35 @@ function JapaneseQuiz() {
   const randomHiragana  = () => hiragana[Math.floor(Math.random() * hiragana.length)];
 
   const [selected, setSelected] = useState(randomHiragana());
-  const [text, setText] = useState("");
+  const [options, setOptions] = useState([]);
 
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-      // Optionally clear the input
-      setText("");
+  useEffect(() => {
+    const wrongOptions = () =>
+      hiragana
+        .filter(hiragana => hiragana !== selected)
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 3);
+  
+    setOptions([selected, ...wrongOptions()].sort(() => Math.random() - 0.5));
+  }, [selected]);
+
+  const checkAnswer = (option) => {
+    if (option === selected) {
+  
+    } else {
+      console.log("Wrong answer");
     }
-  };
 
+    setSelected(randomHiragana());
+    setOptions([selected, ...wrongOptions(3)]);
+  }
 
   return (
     <div>
       <p style={{fontSize:60}}>{selected}</p>
-      <input type="text"  value={text} onKeyDown={handleKeyDown} onChange={(e) => setText(e.target.value)}></input>
+      <Stack spacing={2} direction="row">
+        {options.map((option) => <Button variant="contained" onClick={() => checkAnswer(option)}>{option}</Button>)}
+      </Stack>
     </div>
   )
 }

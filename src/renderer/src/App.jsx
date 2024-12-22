@@ -1,5 +1,4 @@
 import JapaneseQuiz from './components/JapaneseQuiz'
-import electronLogo from './assets/electron.svg'
 
 function App() {
   return (
