@@ -23,7 +23,13 @@ function MainMenu() {
         </Card.Header>
         <ListGroup variant="flush">
           {Object.keys(groupedKana).map((group) => (
-            <ListGroup.Item action key={group[0].category}>{group} - {groupedKana[group].slice(0, 5).map( (kana) => kana.character).join(' ')}</ListGroup.Item>
+            <ListGroup.Item action key={group[0].category}>
+              {group} -{' '}
+              {groupedKana[group]
+                .slice(0, 5)
+                .map((kana) => kana.character)
+                .join(' ')}
+            </ListGroup.Item>
           ))}
         </ListGroup>
       </Card>
