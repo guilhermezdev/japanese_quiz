@@ -1,9 +1,10 @@
 import JapaneseQuiz from './components/JapaneseQuiz'
+import MainMenu from './components/MainMenu'
 
 function App() {
   return (
     <>
-      <JapaneseQuiz></JapaneseQuiz>
+      <MainMenu></MainMenu>
     </>
   )
 }
