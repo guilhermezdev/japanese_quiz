@@ -1,10 +1,14 @@
 import { Button } from '@mui/material'
 import { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom';
+
 import Stack from '@mui/material/Stack'
-import { hiraganaList } from './japanese_characters'
 
 function JapaneseQuiz() {
-  const randomHiragana = () => hiraganaList[Math.floor(Math.random() * hiraganaList.length)]
+  const location = useLocation()
+  const {characters} = location.state
+
+  const randomHiragana = () => characters[Math.floor(Math.random() * characters.length)]
 
   const [selected, setSelected] = useState(randomHiragana())
   const [options, setOptions] = useState([])
@@ -15,7 +19,7 @@ function JapaneseQuiz() {
 
   useEffect(() => {
     const wrongOptions = () =>
-      hiraganaList
+      characters
         .filter((hiragana) => hiragana !== selected)
         .sort(() => Math.random() - 0.5)
         .slice(0, 3)
