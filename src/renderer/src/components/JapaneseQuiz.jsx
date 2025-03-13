@@ -1,6 +1,6 @@
 import { Button } from '@mui/material'
 import { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import Stack from '@mui/material/Stack'
 
@@ -16,6 +16,8 @@ function JapaneseQuiz() {
   const [totalCount, setTotal] = useState(0)
   const [previousAnswer, setPreviousAnswer] = useState(null)
   const [previousAnswerCorrect, setPreviousAnswerCorrect] = useState(null)
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     const wrongOptions = () =>
@@ -51,26 +53,39 @@ function JapaneseQuiz() {
       >
         {correctCount}/{totalCount}
       </p>
+
+
+      <Button variant="contained" onClick={() => navigate('/')} style={
+        {
+          top: 8,
+          left: 8,
+        }
+      }>
+          Back
+      </Button>
+
       {
         previousAnswer && (
           <p
             style={{
               fontSize: 30,
               position: 'absolute',
-              top: 0,
-              left: 8
+              top: '20%',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              textAlign: 'center'
             }}
           >
             {previousAnswer.character} ({previousAnswer.romaji}) was {previousAnswerCorrect ? 'correct' : 'incorrect'}
           </p>
         )
-
       }
+
       <p
         style={{
           fontSize: 60,
           position: 'absolute',
-          top: '25%',
+          top: '30%',
           left: '50%', 
           transform: 'translateX(-50%)',
           textAlign: 'center'
@@ -79,7 +94,14 @@ function JapaneseQuiz() {
         {selected.character}
       </p>
 
-      <Stack spacing={2} direction="row" >
+      <Stack spacing={2} direction="row" style={{
+          fontSize: 60,
+          position: 'absolute',
+          top: '50%',
+          left: '50%', 
+          transform: 'translateX(-50%)',
+          textAlign: 'center'
+        }}>
         {options.map((option) => (
           <Button variant="contained" onClick={() => checkAnswer(option)}>
             {option.romaji}
